@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>商品详情页面</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+	<link rel="stylesheet" href="/static/css/bootstrap.css">
+	<script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="/static/js/slide.js"></script>
+
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+
+
+</head>
+<body style="background:#eee">
+<div class="header_con">
+		<div class="header">
+			<div class="welcome fl">欢迎{{ user.username }}来到拼多多!</div>
+			<div class="fr">
+
+				<div class="login_btn fl">
+					<a href="{% url 'users:user_login' %}">登录</a>
+					<span>|</span>
+					<a href="{% url 'users:register' %}">注册</a>
+				</div>
+				<div class="user_link fl">
+					<span>|</span>
+					<a href="{% url 'users:user_center_info' %}">用户中心</a>
+					<span>|</span>
+					<a href="{% url 'store:add' %}">用户开店</a>
+					<span>|</span>
+					<a href="{% url 'cart:list' %}">我的购物车</a>
+					<span>|</span>
+					<a href="{% url 'orders:list' %}">我的订单</a>
+					<span>|</span>
+					<a href="{% url 'users:logout' %}">退出登录</a>
+				</div>
+			</div>
+		</div>
+	</div>
+<a href="{% url 'users:index' %}"><img src="/static/images/logo.png" alt="">
+</a>
+<div class="container">
+<div class="panel panel-default">
+  <div class="panel-body">
+	  <div class="row">
+		  <div class="col-md-4 ">
+			  <a href="#"><img src="/{{ goods.goodsimage_set.all.first.path }}" alt="" style="width:400px;height:450px;"></a></div>
+
+		  	<div class="col-md-7 col-md-offset-1">
+						<div class="panel panel-default">
+  								<div class="panel-body">
+
+							<h1>{{goods.name}}</h1>
+									<div style="width:500px;height:50px;background:#fff;border: 1px solid pink">
+										<p style="color:#000;">{{goods.intro}}</p>
+									</div>
+									<div style="width:500px;height:50px;">
+									<h1 style="text-align:center;">
+
+										<span class="show_pirze" style="color:red;background:pink;">¥<em>{{goods.price}}</em></span></h1>
+									</div>
+						<h2 class="count">销量：{{goods.count}}</h2>
+							<h2 class="total">库存：<em>{{goods.stock}}</em></h2>
+							<div class="operate_btn">
+								<button><a href="javascript:;" class="buy_btn">立即购买</a></button>
+								<button><a href="javascript:;" class="add_cart" id="add_cart">加入购物车</a></button>
+							</div>
+							</div>
+						</div>
+			</div>
+			 </div>
+
+	  </div>
+  </div>
+
+</div>
+
+
+
+<div class="footer">
+		<div class="foot_link">
+			<a href="#">关于我们</a>
+			<span>|</span>
+			<a href="#">联系我们</a>
+			<span>|</span>
+			<a href="#">招聘人才</a>
+			<span>|</span>
+			<a href="#">友情链接</a>
+		</div>
+		<p>CopyRight © 2019 北京拼多多信息技术有限公司 All Rights Reserved</p>
+		<p>电话：010-51888    京ICP备 76327568号</p>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.12.2.js"></script>
+	<script type="text/javascript">
+		var $add_x = $('#add_cart').offset().top;
+		var $add_y = $('#add_cart').offset().left;
+
+		var $to_x = $('#show_count').offset().top;
+		var $to_y = $('#show_count').offset().left;
+
+		$(".add_jump").css({'left':$add_y+80,'top':$add_x+10,'display':'block'})
+		$('#add_cart').click(function(){
+			$(".add_jump").stop().animate({
+				'left': $to_y+7,
+				'top': $to_x+7},
+				"fast", function() {
+					$(".add_jump").fadeOut('fast',function(){
+						$('#show_count').html(2);
+					});
+
+			});
+		})
+	</script>
+</body>
+</html>

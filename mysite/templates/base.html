@@ -1,0 +1,107 @@
+{# 首页 注册 登录 #}
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+{% load staticfiles %}
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    {# 网页标题内容块 #}
+    <title>{% block title %}拼多多{% endblock title %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    {% block t %}
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    {% endblock t %}
+    <style type="text/css">
+            body{ background:#EEEEEE;margin:0; padding:0; font-family:"微软雅黑", Arial, Helvetica, sans-serif; }
+            a{ color:#006600; text-decoration:none;}
+            a:hover{color:#990000;}
+            .top{ margin:5px auto; color:#990000; text-align:center;}
+            .info select{ border:1px #993300 solid; background:#FFFFFF;}
+            .info{ margin:5px; text-align:center;}
+            .info #show{ color:#3399FF; }
+            .bottom{ text-align:right; font-size:12px; color:#CCCCCC; width:1000px;}
+    </style>
+    {# 网页顶部引入文件块 #}
+    {% block topfiles %}{% endblock topfiles %}
+</head>
+<body>
+{# 网页顶部欢迎信息块 #}
+{% block header_con %}
+<div class="header_con">
+    <div class="header">
+        <div class="welcome fl">欢迎来到天天生鲜!</div>
+        <div class="fr">
+            {% if users.is_authenticated %}
+            <div class="login_btn fl">
+                欢迎您：<em>{{ users.username }}</em>
+                <span>|</span>
+                <a href="{% url 'users:user_logout'  %}">退出</a>
+            </div>
+            {% else %}
+            <div class="login_btn fl">
+                <a href="{% url 'users:user_login' %}">登录</a>
+                <span>|</span>
+                <a href="{% url 'users:register' %}">注册</a>
+            </div>
+            {% endif %}
+            <div class="user_link fl">
+                <span>|</span>
+                <a href="{% url 'users:user_info' %}">用户中心</a>
+                <span>|</span>
+                <a href="{% url 'store:store_list'   %}">店铺管理</a>
+                <span>|</span>
+                <a href="{% url 'cart:list'  %}">我的购物车</a>
+                <span>|</span>
+                <a href="{% url 'orders:list' 1 %}">我的订单</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock header_con %}
+
+{# 网页顶部搜索框块 #}
+{% block search_bar %}
+<div class="search_bar clearfix">
+    <a href="{% url 'goods:index' %}" class="logo fl"><img src="{% static 'images/logo.png' %}"></a>
+    <div class="search_con fl">
+        <form method="get" action="/search">
+            <input type="text" class="input_text fl" name="q" placeholder="搜索商品">
+            <input type="submit" class="input_btn fr" name="" value="搜索">
+        </form>
+    </div>
+    <div class="guest_cart fr">
+        <a href="{% url 'cart:cartInfo'  %}" class="cart_name fl">我的购物车</a>
+        <div class="goods_count fl" id="show_count">{{ cart_count }}</div>
+    </div>
+</div>
+{% endblock search_bar %}
+
+{# 网站主体内容块 #}
+{% block body %}{% endblock body %}
+
+<div style="height: 150px;"></div>
+
+
+<div class="footer">
+    <div class="foot_link">
+        <a href="#">关于我们</a>
+        <span>|</span>
+        <a href="#">联系我们</a>
+        <span>|</span>
+        <a href="#">招聘人才</a>
+        <span>|</span>
+        <a href="#">友情链接</a>
+    </div>
+    <p>CopyRight © 2016 北京拼多多信息技术有限公司 All Rights Reserved</p>
+    <p>电话：010-51888 京ICP备23678638号</p>
+</div>
+{# 网页底部html元素块 #}
+{% block bottom %}{% endblock bottom %}
+
+{# 网页底部引入文件块 #}
+{% block bottomfiles %}{% endblock bottomfiles %}
+
+
+</body>
+</html>

@@ -1,0 +1,224 @@
+{% extends 'static_base.html' %}
+
+	<script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+
+
+{% block list_model %}
+<div class="list_model">
+		<div class="list_title clearfix">
+			<h3 class="fl" id="model01">新鲜水果</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				<a href="#">你这么胖</a>
+				<a href="#">不想来点吗</a>
+				<a href="#">宝贝</a>
+			</div>
+			<a href="#" class="goods_more fr" id="fruit_more">查看更多 ></a>
+		</div>
+
+		<div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="/static/images/banner01.jpg"></div>
+
+            <ul class="goods_list fl">
+				{% for goods in goods1_list %}
+				<li>
+					<p style="text-align:center;font-size:18px;"><a href="#">{{goods.name}}</a></p>
+                    <br>
+                    <a href="#"><img src="/{{ goods.goodsimage_set.all.first.path }}" alt=""></a>
+					<div class="prize">¥ {{goods.price}}</div>
+                        <div class="row">
+                            销量：{{goods.count}}
+                            <a href="{% url 'goods:detail' goods.id%}" style="margin-left:20px;">商品详情</a>
+							<a href="{% url 'cart:add' 1 goods.id  %}"><img src="/static/images/shop_cart.png" alt="" style="display:line-block;margin-right:10px;width:20px;height:20px;"></a>
+
+                        </div>
+				</li>
+			{% endfor %}
+			</ul>
+
+		</div>
+</div>
+
+<div class="list_model">
+		<div class="list_title clearfix">
+			<h3 class="fl" id="model02">零食超市</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				<a href="#">我要当太空人</a>
+				<a href="#">爷爷奶奶可高兴了</a>
+				<a href="#">给我爱吃的大嘴巴子</a>
+			</div>
+			<a href="#" class="goods_more fr">查看更多 ></a>
+		</div>
+
+        <div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="/static/images/banner02.jpg"></div>
+
+            <ul class="goods_list fl">
+				{% for goods in goods2_list %}
+				<li>
+					<p style="text-align:center;font-size:18px;"><a href="#">{{goods.name}}</a></p>
+
+                    <br><a href="#"><img src="/{{ goods.goodsimage_set.all.first.path }}" alt=""></a>
+					<div class="prize">¥ {{goods.price}}</div>
+
+                    <div class="row">
+                            销量：{{goods.count}}
+                            <a href="{% url 'goods:detail' goods.id%}" style="margin-left:20px;">商品详情</a>
+						    <a href="{% url 'cart:add' 1 goods.id  %}"><img src="/static/images/shop_cart.png" alt="" style="display:line-block;margin-right:10px;width:20px;height:20px;"></a>
+
+                    </div>
+				</li>
+				{% endfor %}
+			</ul>
+
+		</div>
+</div>
+
+<div class="list_model">
+		<div class="list_title clearfix">
+			<h3 class="fl" id="model03">化妆饰品</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				<a href="#">岂曰无衣</a>
+				<a href="#">与子同袍</a>
+				<a href="#">着我汉家衣裳,兴我礼仪之邦</a>
+			</div>
+			<a href="#" class="goods_more fr">查看更多 ></a>
+		</div>
+
+        <div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="/static/images/banner03.jpg"></div>
+
+            <ul class="goods_list fl">
+				{% for goods in goods3_list %}
+				<li>
+                    <p style="text-align:center;font-size:18px;"><a href="#">{{goods.name}}</a></p>
+                    <br>
+					<a href="#"><img src="/{{ goods.goodsimage_set.all.first.path }}" alt=""></a>
+					<div class="prize">¥ {{goods.price}}</div>
+                      <div class="row">
+                            销量：{{goods.count}}
+                            <a href="{% url 'goods:detail' goods.id%}" style="margin-left:20px;">商品详情</a>
+
+						  <a href="{% url 'cart:add' 1 goods.id  %}"><img src="/static/images/shop_cart.png" alt="" style="display:line-block;margin-right:10px;width:20px;height:20px;"></a>
+
+                    </div>
+				</li>
+				{% endfor %}
+			</ul>
+
+		</div>
+</div>
+
+<div class="list_model">
+		<div class="list_title clearfix">
+			<h3 class="fl" id="model04">服装首饰</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				<a href="#">看</a>
+				<a href="#">blingbling的</a>
+				<a href="#">姐,请问我能得到你吗？</a>
+			</div>
+			<a href="#" class="goods_more fr">给我买,买了,姐就是你的人了！ ></a>
+		</div>
+
+        <div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="/static/images/banner04.jpg"></div>
+
+            <ul class="goods_list fl">
+				{% for goods in goods4_list %}
+				<li>
+					<p style="text-align:center;font-size:18px;"><a href="#">{{goods.name}}</a></p>
+                    <br>
+                    <a href="#"><img src="/{{ goods.goodsimage_set.all.first.path }}" alt=""></a>
+					<div class="prize">¥ {{goods.price}}</div>
+                      <div class="row">
+                            销量：{{goods.count}}
+                            <a href="{% url 'goods:detail' goods.id%}" style="margin-left:20px;">商品详情</a>
+						  <a href="{% url 'cart:add' 1 goods.id  %}"><img src="/static/images/shop_cart.png" alt="" style="display:line-block;margin-right:10px;width:20px;height:20px;"></a>
+
+                    </div>
+				</li>
+				{% endfor %}
+			</ul>
+
+		</div>
+</div>
+
+<div class="list_model">
+		<div class="list_title clearfix">
+			<h3 class="fl" id="model05">海外速购</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				<a href="#">不出门</a>
+				<a href="#">想好货</a>
+				<a href="#">想得美</a>
+			</div>
+			<a href="#" class="goods_more fr">还有很多呢 ></a>
+		</div>
+
+        <div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="/static/images/banner05.jpg"></div>
+
+            <ul class="goods_list fl">
+					{% for goods in goods5_list %}
+				<li>
+					<p style="text-align:center;font-size:18px;"><a href="#">{{goods.name}}</a></p>
+                    <br>
+                    <a href="#"><img src="/{{ goods.goodsimage_set.all.first.path }}" alt=""></a>
+					<div class="prize">¥ {{goods.price}}</div>
+                      <div class="row">
+                            销量：{{goods.count}}
+                            <a href="{% url 'goods:detail' goods.id%}" style="margin-left:20px;">商品详情</a>
+						  <a href="{% url 'cart:add' 1 goods.id  %}"><img src="/static/images/shop_cart.png" alt="" style="display:line-block;margin-right:10px;width:20px;height:20px;"></a>
+
+
+                    </div>
+				</li>
+				{% endfor %}
+			</ul>
+
+		</div>
+</div>
+
+<div class="list_model">
+    <div class="list_title clearfix">
+			<h3 class="fl" id="model06">母婴用品</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				<a href="#">苦啥不能苦孩子</a>
+				<a href="#">宝宝和妈妈需要被呵护</a>
+				<a href="#">对她们好点</a>
+			</div>
+			<a href="#" class="goods_more fr">查看更多 ></a>
+		</div>
+        <div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="/static/images/banner06.jpg"></div>
+            <ul class="goods_list fl">
+				{% for goods in goods6_list %}
+
+					<li>
+					<p style="text-align:center;font-size:18px;"><a href="#">{{goods.name}}</a></p>
+                    <br>
+                    <a href="#"><img src="/{{ goods.goodsimage_set.all.first.path }}" alt=""></a>
+					<div class="prize">¥ {{goods.price}}</div>
+                      <div class="row">
+                            销量：{{goods.count}}
+                            <a href="{% url 'goods:detail' goods.id%}" style="margin-left:20px;">商品详情</a>
+						  <a href="{% url 'cart:add' 1 goods.id  %}"><img src="/static/images/shop_cart.png" alt="" style="display:line-block;margin-right:10px;width:20px;height:20px;"></a>
+
+
+                    </div>
+				</li>
+				{% endfor %}
+			</ul>
+
+		</div>
+</div>
+
+{% endblock list_model %}
+
+

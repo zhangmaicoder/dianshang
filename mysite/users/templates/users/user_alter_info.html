@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>拼多多·用户中心</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+
+</head>
+<body>
+<div class="header_con">
+    <div class="header">
+        <div class="welcome fl">欢迎来到拼多多!</div>
+        <div class="fr">
+            <div class="login_info fl">
+                欢迎您：<em>张迈</em>
+            </div>
+            <div class="login_btn fl">
+                <a href="{% url 'users:user_login' %}">登录</a>
+                <span>|</span>
+                <a href="{% url 'users:register' %}">注册</a> <span>|</span>
+                <span>|</span>
+                <a href="{% url 'users:set_password' %}">修改密码</a>
+            </div>
+            <div class="user_link fl">
+                <span>|</span>
+                <a href="{% url 'users:user_center_info' %}">用户中心</a>
+                <span>|</span>
+                <a href="{% url 'users:user_center_info' %}">我的购物车</a>
+                <span>|</span>
+                <a href="#">我的订单</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="search_bar clearfix">
+    <a href="{% url 'users:index' %}" class="logo fl"><img src="/static/images/logo.png"></a>
+
+    <div class="search_con fr">
+        <input type="text" class="input_text fl" name="" placeholder="搜索商品">
+        <input type="button" class="input_btn fr" name="" value="搜索">
+    </div>
+</div>
+
+<div class="main_con clearfix">
+    <div class="left_menu_con clearfix">
+        <h3>用户中心</h3>
+        <ul>
+            <li><a href="{% url 'users:user_center_info' %}" >· 个人信息</a></li>
+            <li><a href="{% url 'users:watch' %}">· 最近浏览</a></li>
+            <li><a href="{% url 'users:user_alter_info' %}" class="active">· 修改个人信息</a></li>
+        </ul>
+    </div>
+    <div class="right_content clearfix">
+        <div class="info_con clearfix">
+            <h3 class="common_title2">个人信息修改</h3>
+           <table border="1" cellpadding="0" cellspacing="0" class="table table-hover table-bordered table-striped">
+
+               <form action="{% url 'users:user_alter_info' %}" method="post" enctype="multipart/form-data">
+                   {% csrf_token %}
+
+                         <tr><h1>{{msg}}</h1></tr>
+                    <tr>
+                        <td>用户名称</td>
+                        <td>{{ user.username}}</td>
+                    </tr>
+
+                   <tr>
+                        <td>用户头像</td>
+                        <td>
+                            <input class="form-control" type="file" name="avatar" id="avatar">
+                        </td>
+                    </tr>
+
+                   <tr>
+                        <td>用户年龄</td>
+                        <td>
+                            <input type="number" name="age">
+                        </td>
+                    </tr>
+                   <tr>
+                        <td>用户性别</td>
+                        <td>
+                             {% if user.userinfo.gender == '男' %}
+                                <input type="radio" checked value="男" name="gender"> 男
+                                <input  type="radio" value="女" name="gender"> 女
+                                {%  else %}
+                               <input  type="radio"  value="男" name="gender"> 男
+                               <input  type="radio" checked value="女" name="gender"> 女
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                   <tr>
+                        <td>用户电话</td>
+                        <td>
+                            <input type="text" name="phone">
+                        </td>
+                    </tr>
+
+
+
+                    <tr>
+                        <td>用户昵称</td>
+                        <td><input  type="text" name="nickname"></td>
+                    </tr>
+                    <tr>
+                        <td>用户地址</td>
+                        <td><input  type="text" name="address"></td>
+                    </tr>
+                   <tr ><td colspan="2"><input type="submit" value="确定" class="btn btn-block btn-danger"></tr></td>
+               </form>
+
+           </table>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+
+<div class="footer">
+    <div class="foot_link">
+        <a href="#">关于我们</a>
+        <span>|</span>
+        <a href="#">联系我们</a>
+        <span>|</span>
+        <a href="#">招聘人才</a>
+        <span>|</span>
+        <a href="#">友情链接</a>
+    </div>
+    <p>CopyRight © 2016 北京拼多多信息技术有限公司 All Rights Reserved</p>
+    <p>电话：010-****888    京ICP备*******8号</p>
+</div>
+
+</body>
+</html>

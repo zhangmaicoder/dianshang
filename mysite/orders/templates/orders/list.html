@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>我的所有订单</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+	<link rel="stylesheet" href="/static/css/bootstrap.css">
+	<script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="/static/js/slide.js"></script>
+
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+
+
+</head>
+<body style="background:#eee">
+<div class="header_con">
+		<div class="header">
+			<div class="welcome fl">欢迎{{ user.username }}来到拼多多!</div>
+			<div class="fr">
+
+				<div class="login_btn fl">
+					<a href="{% url 'users:user_login' %}">登录</a>
+					<span>|</span>
+					<a href="{% url 'users:register' %}">注册</a>
+				</div>
+				<div class="user_link fl">
+					<span>|</span>
+					<a href="{% url 'users:user_center_info' %}">用户中心</a>
+					<span>|</span>
+					<a href="{% url 'store:add' %}">用户开店</a>
+					<span>|</span>
+					<a href="{% url 'cart:list' %}">我的购物车</a>
+					<span>|</span>
+					<a href="{% url 'orders:list' %}">我的订单</a>
+					<span>|</span>
+					<a href="{% url 'users:logout' %}">退出登录</a>
+				</div>
+			</div>
+		</div>
+	</div>
+<a href="{% url 'users:index' %}"><img src="/static/images/logo.png" alt=""></a>
+<div class="container">
+<table class="table table-hover text-center table-bordered">
+    <h1 class="text-center">我的订单详情</h1><br>
+{% for o in orders %}
+    <tr class="info"><td>{{o.recv_name}}</td>
+        <td>{{o.recv_tel}}</td>
+    <td>{{o.address}}</td>
+
+        <td>{{o.all_price}}</td>
+        <td>{{o.remark}}</td>
+		<td>
+			<a class="btn btn-danger" href="{% url 'orders:delete' o.id %}">取消订单</a></td>
+ </tr>
+
+
+{% endfor %}
+	<tr><td colspan="6">
+		<button class="btn  btn-warning btn-block btn-lg">掏钱吧你</button>
+	</td></tr>
+</table>
+    </div>
+
+
+
+
+</body>
+</html>

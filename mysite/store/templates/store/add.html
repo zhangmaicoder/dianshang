@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>拼多多-店铺开张</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+	<script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="/static/js/slide.js"></script>
+
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+
+</head>
+<body style="background:#eee">
+
+	<div class="header_con">
+		<div class="header">
+			<div class="welcome fl">欢迎{{ user.username }}来到拼多多!</div>
+			<div class="fr">
+
+				<div class="login_btn fl">
+					<a href="{% url 'users:user_login' %}">登录</a>
+					<span>|</span>
+					<a href="{% url 'users:register' %}">注册</a>
+				</div>
+				<div class="user_link fl">
+					<span>|</span>
+					<a href="{% url 'users:user_center_info' %}">用户中心</a>
+					<span>|</span>
+					<a href="{% url 'store:add' %}">用户开店</a>
+					<span>|</span>
+					<a href="cart.html">我的购物车</a>
+					<span>|</span>
+					<a href="user_center_order.html">我的订单</a>
+					<span>|</span>
+					<a href="{% url 'users:logout' %}">退出登录</a>
+				</div>
+			</div>
+		</div>
+	</div>
+<a href="{% url 'users:index' %}"><img src="/static/images/logo.png" alt=""></a>
+
+<div class="container">
+<h1>老子开业了</h1>
+<div class="row">
+    <div class="col-md-4">
+    <img src="/static/images/3.jpg" style="height:600px;width:350px;">
+    </div>
+
+<div class="col-md-8">
+    <form action="{% url 'store:add' %}" method="post" enctype="multipart/form-data">
+       {% csrf_token %}
+            <h1>店铺名称: </h1><input type="text" name="name" style="width:500px;height:50px;font-size:22px;color:red;"><br>
+        <h1>店铺封面：</h1><input type="file" name="cover" id="cover" ><br>
+        <h1>店铺描述: </h1>
+        <textarea name="intro" id="" cols="30" rows="10" style="width:500px;height:250px;font-size:22px;"></textarea><br>
+		<br>
+
+        <input type="submit" class="btn btn-danger " value="开张">
+		<button class="btn btn-warning" ><a href="{% url 'store:list' %}" style="color:#fff;">我的所有店铺</a></button>
+
+    </form>
+
+</div>
+</div>
+</div>
+	<div class="footer">
+		<div class="foot_link">
+			<a href="#">关于我们</a>
+			<span>|</span>
+			<a href="#">联系我们</a>
+			<span>|</span>
+			<a href="#">招聘人才</a>
+			<span>|</span>
+			<a href="#">友情链接</a>
+		</div>
+		<p>CopyRight © 2019 北京拼多多信息技术有限公司 All Rights Reserved</p>
+		<p>电话：010-51888    京ICP备 76327568号</p>
+	</div>
+	<script type="text/javascript" src="/static/js/slide.js"></script>
+</body>
+</html>
+
+
+
+=

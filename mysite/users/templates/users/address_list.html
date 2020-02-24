@@ -1,0 +1,78 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>商品详情页面</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+	<link rel="stylesheet" href="/static/css/bootstrap.css">
+	<script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="/static/js/slide.js"></script>
+
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+
+
+</head>
+<body style="background:#eee">
+<div class="header_con">
+		<div class="header">
+			<div class="welcome fl">欢迎{{ user.username }}来到拼多多!</div>
+			<div class="fr">
+
+				<div class="login_btn fl">
+					<a href="{% url 'users:user_login' %}">登录</a>
+					<span>|</span>
+					<a href="{% url 'users:register' %}">注册</a>
+				</div>
+				<div class="user_link fl">
+					<span>|</span>
+					<a href="{% url 'users:user_center_info' %}">用户中心</a>
+					<span>|</span>
+					<a href="{% url 'store:add' %}">用户开店</a>
+					<span>|</span>
+					<a href="{% url 'cart:list' %}">我的购物车</a>
+					<span>|</span>
+					<a href="{% url 'orders:list' %}">我的订单</a>
+					<span>|</span>
+					<a href="{% url 'users:logout' %}">退出登录</a>
+				</div>
+			</div>
+		</div>
+	</div>
+<a href="{% url 'users:index' %}"><img src="/static/images/logo.png" alt=""></a>
+<div class="container">
+<h1 class="text-center">地址详情页面</h1>
+    <br>
+
+{% for address in addresses %}
+<table class="table table-hover text-center table-block">
+    <tr class="info"><td>收货人：</td><td>{{address.recv_name}}</td></tr>
+           <tr><td>收货电话号码：</td><td>{{ address.recv_tel}}</td></tr>
+        <tr><td>地址：</td><td>{{address.province}}
+        {{address.city}}
+        {{address.street}}
+        {{address.desc}}
+            </td></tr>
+
+
+    </table>
+{% endfor %}
+<br>
+</div>
+
+<div class="footer">
+		<div class="foot_link">
+			<a href="#">关于我们</a>
+			<span>|</span>
+			<a href="#">联系我们</a>
+			<span>|</span>
+			<a href="#">招聘人才</a>
+			<span>|</span>
+			<a href="#">友情链接</a>
+		</div>
+		<p>CopyRight © 2019 北京拼多多信息技术有限公司 All Rights Reserved</p>
+		<p>电话：010-51888    京ICP备 76327568号</p>
+	</div>
+
+</body>
+</html>

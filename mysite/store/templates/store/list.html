@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>拼多多-我的店铺</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+	<script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="/static/js/slide.js"></script>
+
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+
+</head>
+
+<body style="background:#eee">
+<div class="header_con">
+		<div class="header">
+			<div class="welcome fl">欢迎{{ user.username }}来到拼多多!</div>
+			<div class="fr">
+
+				<div class="login_btn fl">
+					<a href="{% url 'users:user_login' %}">登录</a>
+					<span>|</span>
+					<a href="{% url 'users:register' %}">注册</a>
+				</div>
+				<div class="user_link fl">
+					<span>|</span>
+					<a href="{% url 'users:user_center_info' %}">用户中心</a>
+					<span>|</span>
+					<a href="{% url 'store:add' %}">用户开店</a>
+					<span>|</span>
+					<a href="cart.html">我的购物车</a>
+					<span>|</span>
+					<a href="user_center_order.html">我的订单</a>
+					<span>|</span>
+					<a href="{% url 'users:logout' %}">退出登录</a>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="container">
+    <div class="page-header">
+        <h1><a href="{% url 'users:index' %}"><img src="/static/images/logo.png"></a>欢迎您 <small>来到{{user.username}}的品牌旗舰店</small></h1>
+</div>
+        <div class="row">
+
+    <table  cellspacing="0" cellpadding="0" class="col-md-6  table-bordered table-hover table-striped text-center" >
+        {% for store in stores %}
+
+        <tr><td>店铺封面</td></tr>
+            <tr><td><img src="/{{store.cover}}" alt=""></td></tr>
+           <tr><td>店铺名称</td></tr>
+            <tr><td>{{ store.name }}</td></tr>
+            <tr><td>店铺描述</td></tr>
+            <tr><td>{{ store.intro }}</td></tr>
+            <tr><td><a href="{% url 'store:detail' store.id %}">查询详情</a></td></tr>
+            <tr><td>----------------------------------------------------------------------------------------------------------------------------</td></tr>
+
+        {% empty %}
+        <tr>
+        <td>没有店铺，快来<a href="{% url 'store:add' %}">开店</a>吧</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">合作伙伴·赞助商</div>
+                 <div class="panel-body ">
+                     <img src="/static/images/store/tan1.jpg" alt="ads" style="width:520px;height:350px;">
+                     <h1>是兄弟就来砍我</h1>
+                     <img src="/static/images/store/tan2.jpg" alt="ads" style="width:520px;height:350px;">
+                     <h1>五年！你知道我怎么过来的吗？</h1><p style="font-size:20px;">我天天在家玩贪玩蓝月---<span>真香!</span></p>
+                    <img src="/static/images/store/re.jpg" alt="ads" style="width:520px;height:350px;">
+                     <h1>沙场秋点兵！</h1><p style="font-size:20px;">小岳岳带你攻占皇城---<span>哈哈~</span></p>
+                    <img src="/static/images/store/du.jpg" alt="ads" style="width:520px;height:350px;">
+                     <h1>澳门皇家赌场</h1><p style="font-size:20px;">性感荷官在线发牌---<span>给您别致的体验</span></p>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="footer">
+		<div class="foot_link">
+			<a href="#">关于我们</a>
+			<span>|</span>
+			<a href="#">联系我们</a>
+			<span>|</span>
+			<a href="#">招聘人才</a>
+			<span>|</span>
+			<a href="#">友情链接</a>
+		</div>
+		<p>CopyRight © 2019 北京拼多多信息技术有限公司 All Rights Reserved</p>
+		<p>电话：010-51888    京ICP备 76327568号</p>
+	</div>
+	<script type="text/javascript" src="/static/js/slide.js"></script>
+
+</body>
+</html>

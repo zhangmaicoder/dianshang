@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>拼多多-修改店铺</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+	<script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="/static/js/slide.js"></script>
+
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+
+</head>
+<body style="background:#eee">
+
+<div class="header_con">
+
+		<div class="header">
+			<div class="welcome fl">欢迎{{ user.username }}来到拼多多!</div>
+			<div class="fr">
+
+				<div class="login_btn fl">
+					<a href="{% url 'users:user_login' %}">登录</a>
+					<span>|</span>
+					<a href="{% url 'users:register' %}">注册</a>
+				</div>
+				<div class="user_link fl">
+					<span>|</span>
+					<a href="{% url 'users:user_center_info' %}">用户中心</a>
+					<span>|</span>
+					<a href="{% url 'store:add' %}">用户开店</a>
+					<span>|</span>
+					<a href="cart.html">我的购物车</a>
+					<span>|</span>
+					<a href="user_center_order.html">我的订单</a>
+					<span>|</span>
+					<a href="{% url 'users:logout' %}">退出登录</a>
+				</div>
+			</div>
+		</div>
+	</div>
+<a href="{% url 'users:index' %}">
+<img src="/static/images/logo.png" alt=""></a>
+<div class="container">
+    <div class="panel panel-default">
+      <div class="panel-heading"><h1>这是我的小店</h1></div>
+      <div class="panel-body">
+
+          <table border="1" cellpadding="0" cellspacing="0" class="table table-bordered table-hover">
+
+            <tr>
+                <td>店铺封面</td>
+                <td><img src="/{{store.cover}}"></td>
+            </tr>
+            <tr>
+                <td>店铺名称</td>
+                <td>{{store.name}}</td>
+            </tr>
+            <tr>
+                <td>店铺状态</td>
+                <td>
+                    {% if store.status == 0 %}
+                    <p>正在营业</p>
+                    <a href="{% url 'store:change' store.id 1 %}">暂停营业</a>
+                    <a href="{% url 'store:change' store.id 2 %}">删除店铺</a>
+
+
+                 {% elif store.status == 1 %}
+                    <p>暂停营业</p>
+                    <a href="{% url 'store:change' store.id 0 %}">开始营业</a>
+                    <a href="{% url 'store:change' store.id 2 %}">删除店铺</a>
+                   {% elif store.status == 2 %}
+                    <p>店铺已经删除，请联系管理员</p>
+                    {% endif %}
+                </td>
+            </tr>
+
+            <tr>
+                <td>操作</td>
+                <td><a href="{% url 'store:update' store.id %}">修改店铺信息</a></td>
+            </tr>
+
+        </table>
+
+      </div>
+      </div>
+
+	<hr>
+	<div class="panel-heading"><h1>上架商品</h1></div>
+	<div class="panel-body">
+
+		<form action="{% url 'goods:add' %}" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+	  <div class="form-group">
+		<label for="name">商品名称：</label>
+		<input type="text" class="form-control" id="name" name="name" placeholder="请输入商品名称">
+	  </div>
+	  <div class="form-group">
+		<label for="price">商品单价：</label>
+		<input type="number" class="form-control" name="price" placeholder="输入商品价格">
+	  </div><div class="form-group">
+		<label for="price">商品库存：</label>
+		<input type="number" class="form-control" name="stock" placeholder="商品库存量">
+	  </div>
+			<input type="hidden" name="store" value="{{ store.id }}">
+
+			<div class="form-group">
+		<label for="cover">商品图片</label>
+				<div class="row">
+		<input type="file" name="cover" class="col-sm-6"><button class="btn-danger col-sm-3">继续添加</button>
+				</div>
+	  </div>
+			<div class="form-group">
+			<lable for="type1">商品类型：</lable>
+		<select name="type1" id="type1">
+			<option value="-1">请选择一级类型</option>
+			{% for t in type1 %}
+			<option value="{{t.id}}">{{t.name}}</option>
+			{% endfor %}
+		</select>
+
+		<select name="type2" id="type2">
+
+		</select>
+				</div>
+			<lable for="intro">商品介绍：</lable>
+			<div class="form-group">
+			<textarea name="intro" id="" cols="100" rows="20"></textarea>
+				</div>
+
+		<div class="row">
+	  <button type="submit" class="btn col-sm-4 col-sm-offset-2 btn-warning ">上架商品</button>
+		</div>
+			</form>
+		
+	</div>
+</div>
+
+
+
+
+
+<div class="footer">
+		<div class="foot_link">
+			<a href="#">关于我们</a>
+			<span>|</span>
+			<a href="#">联系我们</a>
+			<span>|</span>
+			<a href="#">招聘人才</a>
+			<span>|</span>
+			<a href="#">友情链接</a>
+		</div>
+		<p>CopyRight © 2019 北京拼多多信息技术有限公司 All Rights Reserved</p>
+		<p>电话：010-51888    京ICP备 76327568号</p>
+	</div>
+	<script type="text/javascript" src="/static/js/slide.js"></script>
+<script>
+	$(function(){
+		$("#type1").on("change", function(){
+
+			$.ajax({
+				url:"/goods/findTypeByPId/",
+				type:"get",
+				data:{"parent__id":$(this).val()},
+				success:function(data){
+					$("#type2").empty()
+					data = JSON.parse(data)
+					for(var i = 0; i < data.length; i++){
+
+						var type =data[i];
+						$op = $("<option>");
+						$op.attr("value",type.pk)
+						$op.text(type.fields.name)
+						$("#type2").append($op)
+					}
+				},
+				error:function(){
+					alert("网络异常，请重新点击！")
+
+				}
+			});
+		});
+	});
+</script>
+</body>
+</html>

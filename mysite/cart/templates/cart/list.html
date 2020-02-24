@@ -1,0 +1,81 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>商品详情页面</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+	<link rel="stylesheet" href="/static/css/bootstrap.css">
+	<script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="/static/js/slide.js"></script>
+
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+
+
+</head>
+<body style="background:#eee">
+<div class="header_con">
+		<div class="header">
+			<div class="welcome fl">欢迎{{ user.username }}来到拼多多!</div>
+			<div class="fr">
+
+				<div class="login_btn fl">
+					<a href="{% url 'users:user_login' %}">登录</a>
+					<span>|</span>
+					<a href="{% url 'users:register' %}">注册</a>
+				</div>
+				<div class="user_link fl">
+					<span>|</span>
+					<a href="{% url 'users:user_center_info' %}">用户中心</a>
+					<span>|</span>
+					<a href="{% url 'store:add' %}">用户开店</a>
+					<span>|</span>
+					<a href="{% url 'cart:list' %}">我的购物车</a>
+					<span>|</span>
+					<a href="{% url 'orders:list' %}">我的订单</a>
+					<span>|</span>
+					<a href="{% url 'users:logout' %}">退出登录</a>
+				</div>
+			</div>
+		</div>
+	</div>
+<a href="{% url 'users:index' %}"><img src="/static/images/logo.png" alt=""></a>
+<div class="container">
+    <h1 class="text-center">俺的购物车</h1>
+    <form action="{% url 'orders:confirm' %}" method="post">
+		{% csrf_token %}
+    <table  class="table text-center table-hover table-block table-bordered">
+
+        {% for s in carts %}
+            <tr class="warning">
+				<td style="vertical-align:middle;"><input type="checkbox" name="g_id" value="{{s.id}}"></td>
+                <td style="vertical-align:middle;">商品名称：{{s.goods.name}}</td>
+                <td style="vertical-align:middle;"><img src="/{{s.goods.goodsimage_set.all.first.path}}" alt=""></td>
+                <td style="vertical-align:middle;">商品数量：{{s.count}}</td>
+                <td style="vertical-align:middle;">小计金额：¥ {{s.allTotal}}</td>
+                <td style="vertical-align:middle;"><a href="{% url 'cart:delete' s.id %}" class="btn btn-danger">移除购物车</a></td>
+
+                </tr>
+
+        {% endfor %}
+
+    </table>
+        <input type="submit" class="btn btn-success btn-lg btn-block" value="确认订单">
+        </form>
+</div>
+<div class="footer">
+		<div class="foot_link">
+			<a href="#">关于我们</a>
+			<span>|</span>
+			<a href="#">联系我们</a>
+			<span>|</span>
+			<a href="#">招聘人才</a>
+			<span>|</span>
+			<a href="#">友情链接</a>
+		</div>
+		<p>CopyRight © 2019 北京拼多多信息技术有限公司 All Rights Reserved</p>
+		<p>电话：010-51888    京ICP备 76327568号</p>
+	</div>
+
+</body>
+</html>

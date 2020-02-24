@@ -1,0 +1,375 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	{% block head %}
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>{% block title %}拼多多-首页{% endblock %}</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+	<script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/static/js/slide.js"></script>
+	{% endblock head %}
+</head>
+<body>
+{# 网页顶部欢迎信息块 #}
+
+{% block header_con %}
+	<div class="header_con">
+		<div class="header">
+			<div class="welcome fl">欢迎{{ user.username }}来到拼多多!</div>
+			<div class="fr">
+
+				<div class="login_btn fl">
+					<a href="{% url 'users:user_login' %}">登录</a>
+					<span>|</span>
+					<a href="{% url 'users:register' %}">注册</a>
+				</div>
+				<div class="user_link fl">
+					<span>|</span>
+					<a href="{% url 'users:user_center_info' %}">用户中心</a>
+					<span>|</span>
+					<a href="{% url 'store:add' %}">用户开店</a>
+					<span>|</span>
+					<a href="{% url 'cart:list' %}">我的购物车</a>
+					<span>|</span>
+					<a href="{% url 'orders:list' %}">我的订单</a>
+					<span>|</span>
+					<a href="{% url 'users:logout' %}">退出登录</a>
+				</div>
+			</div>
+		</div>		
+	</div>
+{% endblock header_con %}
+
+
+{# 网页搜索框块 #}
+{% block search_bar %}
+	<div class="search_bar clearfix">
+		<a href="{% url 'users:index' %}" class="logo fl"><img src="/static/images/logo.png"></a>
+
+		<div class="search_con fl">
+			<input type="text" class="input_text fl" name="" placeholder="搜索商品">
+			<input type="submit" class="input_btn fr" name="" value="搜索">
+
+		</div>
+		<div class="guest_cart fr">
+			<a href="{% url 'cart:list' %}" class="cart_name fl">我的购物车</a>
+			<div class="goods_count fl" id="show_count">1</div>
+		</div>
+	</div>
+{% endblock search_bar %}
+
+{# 网页主体内容块 #}
+{% block body %}
+	<div class="navbar_con">
+		<div class="navbar">
+			<h1 class="fl">全部商品分类</h1>
+			<ul class="navlist fl">
+				<li><a href="">首页</a></li>
+				<li class="interval">|</li>
+				<li><a href="">手机生鲜</a></li>
+				<li class="interval">|</li>
+				<li><a href="">抽奖</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="center_con clearfix">
+		<ul class="subnav fl">
+			<li><a href="#model01" class="fruit">新鲜水果</a></li>
+			<li><a href="#model02" class="seafood">零食超市</a></li>
+			<li><a href="#model03" class="meet">化妆饰品</a></li>
+			<li><a href="#model04" class="egg">服装首饰</a></li>
+			<li><a href="#model05" class="vegetables">海外速购</a></li>
+			<li><a href="#model06" class="ice">母婴用品</a></li>
+		</ul>
+		<div class="slide fl">
+			<ul class="slide_pics">
+				<li><img src="/static/images/slide.jpg" alt="幻灯片"></li>
+				<li><img src="/static/images/slide02.jpg" alt="幻灯片"></li>
+				<li><img src="/static/images/slide03.jpg" alt="幻灯片"></li>
+				<li><img src="/static/images/slide04.jpg" alt="幻灯片"></li>
+			</ul>
+			<div class="prev"></div>
+			<div class="next"></div>
+			<ul class="points"></ul>
+		</div>
+		<div class="adv fl">
+			<a href="#"><img src="/static/images/adv01.jpg"></a>
+			<a href="#"><img src="/static/images/adv02.jpg"></a>
+		</div>
+	</div>
+
+{% block list_model %}
+	<div class="list_model">
+		<div class="list_title clearfix">
+			<h3 class="fl" id="model01">新鲜水果</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				<a href="#">你这么胖</a>
+				<a href="#">不想来点吗</a>
+				<a href="#">宝贝</a>
+			</div>
+			<a href="#" class="goods_more fr" id="fruit_more">查看更多 ></a>
+		</div>
+
+		<div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="/static/images/banner01.jpg"></div>
+			<ul class="goods_list fl">
+				<li>
+					<h4><a href="#">天山草莓</a></h4>
+					<a href="#"><img src="/static/images/goods/goods003.jpg"></a>
+					<div class="prize">¥ 130.00</div>
+				</li>
+				<li>
+					<h4><a href="#">紫金葡萄</a></h4>
+					<a href="#"><img src="/static/images/goods/goods002.jpg"></a>
+					<div class="prize">¥ 55.50</div>
+				</li>
+				<li>
+					<h4><a href="#">极地柠檬</a></h4>
+					<a href="#"><img src="/static/images/goods/goods001.jpg"></a>
+					<div class="prize">¥ 83.90</div>
+				</li>
+				<li>
+					<h4><a href="#">长生不老果</a></h4>
+					<a href="#"><img src="/static/images/goods/goods012.jpg"></a>
+					<div class="prize">你有钱吗？买的起吗？还瞅个小眼看</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="list_model">
+		<div class="list_title clearfix">
+			<h3 class="fl" id="model02">零食超市</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				<a href="#">我要当太空人</a>
+				<a href="#">爷爷奶奶可高兴了</a>
+				<a href="#">给我爱吃的大嘴巴子</a>
+			</div>
+			<a href="#" class="goods_more fr">查看更多 ></a>
+		</div>
+
+		<div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="/static/images/banner02.jpg"></div>
+			<ul class="goods_list fl">
+				<li>
+					<h4><a href="#">吃货的不二选择宅男最爱鸡腿抱枕</a></h4>
+					<a href="#"><img src="/static/images/goods/goods018.jpg"></a>
+					<div class="prize">¥ 48.00</div>
+				</li>
+				<li>
+					<h4><a href="#">彩虹糖</a></h4>
+					<a href="#"><img src="/static/images/goods/goods019.jpg"></a>
+					<div class="prize">¥ 46.00</div>
+				</li>
+				<li>
+					<h4><a href="#">三只松鼠坚果大礼包</a></h4>
+					<a href="#"><img src="/static/images/goods/goods020.jpg"></a>
+					<div class="prize">¥ 119.00</div>
+				</li>
+				<li>
+					<h4><a href="#">喜之郎,多点关心,多点爱</a></h4>
+					<a href="#"><img src="/static/images/goods/goods021.jpg"></a>
+					<div class="prize">¥ 25.00</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="list_model">
+		<div class="list_title clearfix">
+			<h3 class="fl" id="model03">化妆饰品</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				<a href="#">岂曰无衣</a>
+				<a href="#">与子同袍</a>
+				<a href="#">着我汉家衣裳,兴我礼仪之邦</a>
+			</div>
+			<a href="#" class="goods_more fr">查看更多 ></a>
+		</div>
+
+		<div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="/static/images/banner03.jpg"></div>
+			<ul class="goods_list fl">
+				<li>
+					<h4><a href="#">清新可爱的古风美女衣服</a></h4>
+					<a href="#"><img src="/static/images/goods_clothes.jpg"></a>
+					<div class="prize">¥ 138.00</div>
+				</li>
+				<li>
+					<h4><a href="#">萝莉lo娘衣服长裙</a></h4>
+					<a href="#"><img src="/static/images/goods_clothes01.jpg"></a>
+					<div class="prize">¥ 238.00</div>
+				</li>
+				<li>
+					<h4><a href="#">姐妹装闺蜜装古风</a></h4>
+					<a href="#"><img src="/static/images/goods_clothes02.jpg"></a>
+					<div class="prize">¥ 568.00</div>
+				</li>
+				<li>
+					<h4><a href="#">刘亦菲同款古风长裙</a></h4>
+					<a href="#"><img src="/static/images/goods_clothes.jpg"></a>
+					<div class="prize">¥ 1188.00</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="list_model">
+		<div class="list_title clearfix">
+			<h3 class="fl" id="model04">服装首饰</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				<a href="#">看</a>
+				<a href="#">blingbling的</a>
+				<a href="#">姐,请问我能得到你吗？</a>
+			</div>
+			<a href="#" class="goods_more fr">给我买,买了,姐就是你的人了！ ></a>
+		</div>
+
+		<div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="/static/images/banner04.jpg"></div>
+			<ul class="goods_list fl">
+				<li>
+					<h4><a href="#">我要这个</a></h4>
+					<a href="#"><img src="/static/images/goos_money.jpg"></a>
+					<div class="prize">¥ 4888.00</div>
+				</li>
+				<li>
+					<h4><a href="#">还有这个</a></h4>
+					<a href="#"><img src="/static/images/goos_money01.jpg"></a>
+					<div class="prize">¥ 5888.00</div>
+				</li>
+				<li>
+					<h4><a href="#">这个也要</a></h4>
+					<a href="#"><img src="/static/images/goos_moeny02.jpg"></a>
+					<div class="prize">¥ 9888.00</div>
+				</li>
+				<li>
+					<h4><a href="#">爱你哟！</a></h4>
+					<a href="#"><img src="/static/images/goos_money03.jpg"></a>
+					<div class="prize">¥ 18888.00</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="list_model">
+		<div class="list_title clearfix">
+			<h3 class="fl" id="model05">海外速购</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				<a href="#">不出门</a>
+				<a href="#">想好货</a>
+				<a href="#">想得美</a>
+			</div>
+			<a href="#" class="goods_more fr">还有很多呢 ></a>
+		</div>
+
+		<div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="/static/images/banner05.jpg"></div>
+			<ul class="goods_list fl">
+				<li>
+					<h4><a href="#">LV</a></h4>
+					<a href="#"><img src="/static/images/lv.jpg"></a>
+					<div class="prize">¥ 2338.00</div>
+				</li>
+				<li>
+					<h4><a href="#">瑞士手表</a></h4>
+					<a href="#"><img src="/static/images/watch.jpg"></a>
+					<div class="prize">¥ 5338.00</div>
+				</li>
+				<li>
+					<h4><a href="#">精品口红</a></h4>
+					<a href="#"><img src="/static/images/kouhong.jpg"></a>
+					<div class="prize">¥ 638.00</div>
+				</li>
+				<li>
+					<h4><a href="#">Mac Pro</a></h4>
+					<a href="#"><img src="/static/images/mac.jpg"></a>
+					<div class="prize">¥ 13338.00</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="list_model">
+		<div class="list_title clearfix">
+			<h3 class="fl" id="model06">母婴用品</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				<a href="#">苦啥不能苦孩子</a>
+				<a href="#">宝宝和妈妈需要被呵护</a>
+				<a href="#">对她们好点</a>
+			</div>
+			<a href="#" class="goods_more fr">查看更多 ></a>
+		</div>
+
+		<div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="/static/images/banner06.jpg"></div>
+			<ul class="goods_list fl">
+				<li>
+					<h4><a href="#">大胖小子一枚</a></h4>
+					<a href="#"><img src="/static/images/cue.jpg"></a>
+					<div class="prize">¥ 5888.00</div>
+				</li>
+				<li>
+					<h4><a href="#">鹤顶红奶粉无任何添加纯手工制造让宝宝茁壮成长</a></h4>
+					<a href="#"><img src="/static/images/nai.jpg"></a>
+					<div class="prize">¥ 138.00</div>
+				</li>
+				<li>
+					<h4><a href="#">宝妈衣服</a></h4>
+					<a href="#"><img src="/static/images/mother.jpg"></a>
+					<div class="prize">¥ 438.00</div>
+				</li>
+				<li>
+					<h4><a href="#">Hellokity围脖</a></h4>
+					<a href="#"><img src="/static/images/cat.jpg"></a>
+					<div class="prize">¥ 638.00</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+{% endblock list_model %}
+{% endblock body %}
+
+{% block footer %}
+	<div class="footer">
+		<div class="foot_link">
+			<a href="#">关于我们</a>
+			<span>|</span>
+			<a href="#">联系我们</a>
+			<span>|</span>
+			<a href="#">招聘人才</a>
+			<span>|</span>
+			<a href="#">友情链接</a>		
+		</div>
+		<p>CopyRight © 2019 北京拼多多信息技术有限公司 All Rights Reserved</p>
+		<p>电话：010-51888    京ICP备 76327568号</p>
+	</div>
+{% endblock footer %}
+
+	<script type="text/javascript" src="/static/js/slide.js"></script>
+	<script type="text/javascript">
+		BCSlideshow('focuspic');
+		var oFruit = document.getElementById('fruit_more');
+		var oShownum = document.getElementById('show_count');
+
+		var hasorder = localStorage.getItem('order_finish');
+
+		if(hasorder)
+		{
+			oShownum.innerHTML = '2';
+		}
+
+		oFruit.onclick = function(){
+			window.location.href = 'list.html';
+		}
+	</script>
+</body>
+</html>
